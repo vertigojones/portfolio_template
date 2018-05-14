@@ -26,6 +26,7 @@ class RestClient{
 	public function __construct($apiKey, $apiEndpoint, $apiVersion, $ssl){
 		$this->apiKey = $apiKey;
 		$this->mgClient = new Guzzle($this->generateEndpoint($apiEndpoint, $apiVersion, $ssl));
+		$this->mgClient->setDefaultOption('verify', false);
 		$this->mgClient->setDefaultOption('curl.options', array('CURLOPT_FORBID_REUSE' => true));
 		$this->mgClient->setDefaultOption('auth', array (API_USER, $this->apiKey));
 		$this->mgClient->setDefaultOption('exceptions', false);
